@@ -1,62 +1,75 @@
-// Функция для смены страниц (экранов)
-function showPage(pageId) {
+// Данные пользователя (пока храним тут)
+let user = {
+    name: "Ерсултан",
+    coins: 1250,
+    rank: "Активист КДМ",
+    completed: 5
+};
+
+function showPage(pageId, element) {
     const contentArea = document.getElementById('content-area');
     
-    // Убираем активный класс у всех кнопок меню
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-    });
+    // Обновляем активную кнопку в меню
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    if(element) element.classList.add('active');
 
-    // Добавляем активный класс нажатой кнопке (через поиск по тексту или иконке)
-    // Но для простоты пока просто сменим контент
-    
     if (pageId === 'home') {
         contentArea.innerHTML = `
             <h1>Движ КДМ</h1>
-            <div class="quest-card" style="background: var(--card-bg); padding: 15px; border-radius: 15px; border-left: 4px solid var(--accent);">
-                <h3>Событие недели</h3>
-                <p>Готовимся к большому квесту для первокурсников!</p>
+            <div class="quest-card accent-border">
+                <h3>🔥 Срочная новость</h3>
+                <p>Завтра в 15:00 общее собрание в актовом зале. Быть всем!</p>
             </div>
         `;
-    } else if (pageId === 'quests') {
+    } 
+    
+    else if (pageId === 'quests') {
         contentArea.innerHTML = `
-            <h1>Доступные Квесты</h1>
-            <div class="quest-card" style="background: var(--card-bg); padding: 15px; border-radius: 15px; margin-bottom: 10px;">
-                <h3>📸 Фото-охота</h3>
-                <p>Сделай фото с 3-мя активистами КДМ.</p>
-                <button onclick="alert('Задание принято!')" style="background: var(--accent); border: none; padding: 10px; border-radius: 5px; color: white;">Принять</button>
+            <h1>Квесты</h1>
+            <div class="quest-card">
+                <h3>📸 Фото-отчет</h3>
+                <p>Сделай селфи с председателем КДМ.</p>
+                <b style="color:var(--accent)">+300 🪙</b>
             </div>
         `;
-    } else if (pageId === 'top') {
+    } 
+    
+    else if (pageId === 'top') {
         contentArea.innerHTML = `
-            <h1>ТОП-10 Активистов</h1>
-            <ol style="background: var(--card-bg); padding: 20px; border-radius: 15px;">
-                <li>Ерсултан (Легенда) — 5000 🪙</li>
-                <li>Алексей — 4200 🪙</li>
-                <li>Мария — 3800 🪙</li>
-            </ol>
-            <p style="color: var(--accent); text-align: center;">Борись за бесплатный обед!</p>
+            <h1>ТОП-10</h1>
+            <div class="quest-card">
+                <p>1. Ерсултан — 5000 🪙</p>
+                <p>2. Админ — 4999 🪙</p>
+            </div>
         `;
-    } else if (pageId === 'admin') {
+    } 
+    
+    else if (pageId === 'profile') {
         contentArea.innerHTML = `
-            <h1>Вход для КДМ</h1>
-            <input type="password" id="adminPass" placeholder="Введите код доступа" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none;">
-            <button onclick="checkAdmin()" style="width: 100%; background: var(--accent); border: none; padding: 10px; border-radius: 5px; color: white;">Войти в панель</button>
+            <h1>Мой профиль</h1>
+            <div class="profile-card" style="text-align: center;">
+                <span class="material-icons" style="font-size: 80px; color: var(--accent);">account_circle</span>
+                <h2>${user.name}</h2>
+                <p style="color: var(--dim);">${user.rank}</p>
+                <hr style="border: 0.5px solid #222; margin: 20px 0;">
+                <div style="display: flex; justify-content: space-around;">
+                    <div>
+                        <h3 style="margin:0;">${user.coins}</h3>
+                        <small style="color: var(--dim);">Монеты</small>
+                    </div>
+                    <div>
+                        <h3 style="margin:0;">${user.completed}</h3>
+                        <small style="color: var(--dim);">Квесты</small>
+                    </div>
+                </div>
+            </div>
         `;
     }
 }
 
-// Загружаем главную страницу при старте
+// При запуске показываем главную
 window.onload = () => {
+    document.getElementById('coins-top').innerText = user.coins;
+    document.getElementById('username').innerText = user.name;
     showPage('home');
 };
-
-function checkAdmin() {
-    const pass = document.getElementById('adminPass').value;
-    if (pass === '1234') { // Временный пароль
-        alert('Доступ разрешен! Здесь будет управление квестами.');
-    } else {
-        alert('Неверный код доступа!');
-    }
-}
-
