@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KDM Portal</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -15,36 +15,34 @@
             <span id="username">Студент</span>
         </div>
         <div class="balance">
-            <span id="coins">0</span> 🪙
+            <span id="coins-top">0</span> 🪙
         </div>
     </header>
 
     <main id="app-shell">
         <section id="content-area">
-            <h1>Загрузка движа...</h1>
-        </section>
+            </section>
     </main>
 
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active" onclick="showPage('home')">
+        <a href="javascript:void(0)" class="nav-item active" onclick="showPage('home', this)">
             <span class="material-icons">explore</span>
             <span>Движ</span>
         </a>
-        <a href="#" class="nav-item" onclick="showPage('quests')">
+        <a href="javascript:void(0)" class="nav-item" onclick="showPage('quests', this)">
             <span class="material-icons">assignment</span>
             <span>Квесты</span>
         </a>
-        <a href="#" class="nav-item" onclick="showPage('top')">
+        <a href="javascript:void(0)" class="nav-item" onclick="showPage('top', this)">
             <span class="material-icons">emoji_events</span>
             <span>ТОП-10</span>
         </a>
-        <a href="#" class="nav-item" onclick="showPage('admin')">
-            <span class="material-icons">settings</span>
-            <span>КДМ</span>
+        <a href="javascript:void(0)" class="nav-item" onclick="showPage('profile', this)">
+            <span class="material-icons">person</span>
+            <span>Профиль</span>
         </a>
     </nav>
 
-    <script src="js/main.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
-
